@@ -1,11 +1,5 @@
-##The below functions are basically to test the caching concept in R
-##First we create a function that accepts a matrix and stores it in an environment.
-##Next we create a function that calculates the inverse of a matrix and stores it in the same env
-##So everytime we try to create an Inverse of a matrix which exists in cache, it feteches
-##the result from cache instead of calculating it again, thus saving time!
-
-
-## This function accepts a mtrix as input and returns a list of 4 items: set, get, setsolve, getsolve
+## Girish Karkhanis - R Programming - Assignment 2
+## Chenge from example mean to solve functions
 
 makeCacheMatrix <- function(x = matrix()) {
         i <- NULL ## Initializing the inverse to null
@@ -26,8 +20,7 @@ makeCacheMatrix <- function(x = matrix()) {
              getsolve = getsolve)
 }
 
-## This function calculates the inverse of a matrix. If cached value of inverse is available it gets
-## it from there else it calculates
+## Calculate inverse of a matrix.
 cacheSolve <- function(x, ...) {
         i <- x$getsolve() #Check if matrix x is cached
         if(!is.null(i)) {
@@ -40,7 +33,7 @@ cacheSolve <- function(x, ...) {
         i
 }
 
-##Test Cases
+## Trial
 x <- makeCacheMatrix(matrix(1:4,2))
 z<-x$get() ##Get the matrix created
 z
@@ -48,6 +41,6 @@ z
 cacheSolve(x) ## Get the inverse
 cacheSolve(x) ## Check if cached inverse is returned
 
-#Test if inverse is correct
+## If code is correct y %*%y should be id-matrix
 y<-x$getsolve()
-y %*% z ##Should be identity matrix
+y %*% z 
